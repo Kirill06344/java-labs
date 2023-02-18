@@ -2,9 +2,6 @@ package tasks.annotation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
