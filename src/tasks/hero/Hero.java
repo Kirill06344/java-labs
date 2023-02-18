@@ -8,17 +8,22 @@ public class Hero {
 
     public Hero() {
         this.point = 0;
-        movementType = new Walking();
     }
 
     public void move() {
         movementType.printMovementType();
         point += movementType.makeAMove();
-        System.out.println("Now you are at the point: " + point);
     }
 
-    void setMovementType(MovementType movementType) {
+    public void setMovementType(MovementType movementType) {
+        if (movementType == null) {
+            System.out.println("Not existing movement type! Try again!");
+            return;
+        }
         this.movementType = movementType;
+    }
+    public int getCurrentPoint() {
+        return point;
     }
 
 

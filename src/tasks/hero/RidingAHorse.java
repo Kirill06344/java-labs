@@ -1,6 +1,6 @@
 package tasks.hero;
 
-public class RidingAHorse implements MovementType{
+public class RidingAHorse implements MovementType {
 
     @Override
     public void printMovementType() {
@@ -9,7 +9,7 @@ public class RidingAHorse implements MovementType{
     }
 
     @Override
-    public int makeAMove() {return 6;
-
+    public int makeAMove() {
+        return 6;
     }
 }
