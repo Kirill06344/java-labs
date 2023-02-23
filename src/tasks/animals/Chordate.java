@@ -2,8 +2,8 @@ package tasks.animals;
 
 public abstract class Chordate {
 
-    private String name;
-    private int weight;
+    protected String name;
+    protected int weight;
 
     public Chordate(String name, int weight) {
         this.name = name;

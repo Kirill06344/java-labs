@@ -2,49 +2,37 @@ package tasks.animals;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
+        List<Hedgehog> srcCollection1 = new ArrayList<>();
+        srcCollection1.add(new SimpleHedgehog("Anya", 12));
+        srcCollection1.add(new SimpleHedgehog("Ilya", 12));
+        srcCollection1.add(new SimpleHedgehog("Genadiy", 20));
 
-        List<Mammal> mammals = new ArrayList<>();
-
-
-
-
-
-        List<Hedgehog> col1 = new ArrayList<>();
-        List<Felidae> col2 = new ArrayList<>();
+        List<Insectivore> col1 = new ArrayList<>();
+        List<Predator> col2 = new ArrayList<>();
         List<Predator> col3 = new ArrayList<>();
+        segregate(srcCollection1, col1, col2, col3);
 
-        segregate(mammals, col1, col2, col3);
+        System.out.println(col1);
+        System.out.println(col2);
+        System.out.println(col3);
 
-        for (Hedgehog hg : col1) {
-            System.out.println(hg);
-            hg.voice();
-        }
-
-        for (Felidae hg : col2) {
-            System.out.println(hg);
-            hg.voice();
-        }
-
-        for (Predator hg : col3) {
-            System.out.println(hg);
-            hg.voice();
-        }
     }
 
-    static <T, U, V, Y> void segregate(Collection<T> srcCollection, Collection<U> col1, Collection<V> col2, Collection<Y> col3) {
-        for (T animal : srcCollection) {
+    public static void segregate(Collection<? extends Mammal> srcCollection,
+                          Collection<? super SimpleHedgehog> col1, Collection<? super Manul> col2,
+                          Collection<? super Lynx> col3) {
+        for (Mammal animal : srcCollection) {
             if (animal instanceof SimpleHedgehog) {
-                col1.add((U) animal);
+                col1.add((SimpleHedgehog) animal);
             } else if (animal instanceof Manul) {
-                col2.add((V) animal);
+                col2.add((Manul) animal);
             } else {
-                col3.add((Y)animal);
+                col3.add((Lynx)animal);
             }
         }
     }

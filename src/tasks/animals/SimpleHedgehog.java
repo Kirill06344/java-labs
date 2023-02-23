@@ -10,4 +10,5 @@ public class SimpleHedgehog extends Hedgehog {
     public void voice() {
         System.out.println("Shhhhh.I'm simple hedgehog");
     }
+
 }
