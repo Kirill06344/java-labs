@@ -4,7 +4,7 @@ public class Walking implements MovementType{
 
     @Override
     public void printMovementType() {
-        System.out.println("Walking");
+        System.out.println("Walking...");
     }
 
     @Override

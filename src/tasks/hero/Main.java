@@ -1,18 +1,43 @@
 package tasks.hero;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
 
-    private final  String entryMessage = """
-            Hello, let's start our travel!
-            Now you are at the point: 0
-            Your movement type: walking
-            """;
+    private static void initializeMovementTypes(Map<String, MovementType> movementTypes) {
+        movementTypes.put("walking", new Walking());
+        movementTypes.put("horse", new RidingAHorse());
+        movementTypes.put("plane", new TravellingByPlane());
+    }
 
     public static void main(String[] args) {
-        Hero hero = new Hero();
         Scanner in = new Scanner(System.in);
-
+        Map<String, MovementType> movementTypes = new HashMap<>();
+        initializeMovementTypes(movementTypes);
+        Hero hero = new Hero();
+        hero.setMovementType(movementTypes.get("walking"));
+        String command = "";
+        while (!command.equals("exit")) {
+            command = in.next();
+            switch (command) {
+                case "move":
+                    hero.move();
+                    break;
+                case "point":
+                    System.out.println("The hero is at the point: " + hero.getCurrentPoint());
+                    break;
+                case "change":
+                    String type = in.next();
+                    hero.setMovementType(movementTypes.get(type));
+                    break;
+                case "exit":
+                    break;
+                default:
+                    System.out.println("Incorrect command! Try again!");
+                    break;
+            }
+        }
     }
 }
