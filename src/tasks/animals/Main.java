@@ -13,6 +13,8 @@ public class Main {
 
 
 
+
+
         List<Hedgehog> col1 = new ArrayList<>();
         List<Felidae> col2 = new ArrayList<>();
         List<Predator> col3 = new ArrayList<>();
