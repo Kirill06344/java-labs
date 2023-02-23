@@ -10,9 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         List<Mammal> mammals = new ArrayList<>();
-        mammals.add(new Lynx("A", 12));
-        mammals.add(new Manul("B", 23));
-        mammals.add(new SimpleHedgehog("C", 12));
+
 
 
         List<Hedgehog> col1 = new ArrayList<>();
