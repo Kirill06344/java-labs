@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static void initializeMovementTypes(Map<String, MovementType> movementTypes) {
+    private static Map<String, MovementType> initializeMovementTypes() {
+        Map<String, MovementType> movementTypes = new HashMap<>();
         movementTypes.put("walking", new Walking());
         movementTypes.put("horse", new RidingAHorse());
         movementTypes.put("plane", new TravellingByPlane());
+        return movementTypes;
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Map<String, MovementType> movementTypes = new HashMap<>();
-        initializeMovementTypes(movementTypes);
+        Map<String, MovementType> movementTypes = initializeMovementTypes();
         Hero hero = new Hero();
-        hero.setMovementType(movementTypes.get("walking"));
         String command = "";
         while (!command.equals("exit")) {
             command = in.next();

@@ -8,6 +8,7 @@ public class Hero {
 
     public Hero() {
         this.point = 0;
+        setMovementType(new Walking());
     }
 
     public void move() {
