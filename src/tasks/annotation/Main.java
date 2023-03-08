@@ -3,7 +3,6 @@ package tasks.annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Parameter;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
@@ -13,7 +12,7 @@ public class Main {
         invokeMethods(methods);
     }
 
-    public static void invokeMethods(Method [] methods){
+    public static void invokeMethods(Method[] methods) {
         for (Method method : methods) {
             if (method.isAnnotationPresent(MyAnnotation.class)) {
                 System.out.println("Calling method with name: " + method.getName());
@@ -30,16 +29,15 @@ public class Main {
                         Object[] parameters = getParametersForMethod(method);
                         method.invoke(null, parameters);
                     }
-                } catch (IllegalAccessException  e) {
+                } catch (IllegalAccessException e) {
                     System.out.println(e.getMessage());
                 } catch (InvocationTargetException e) {
                     Throwable x = e.getCause();
                     System.out.println("invocation of method: " + method.getName() + " failed because of " + x.getMessage());
                 } catch (IllegalArgumentException e) {
                     System.out.println("Illegal argument for method: " + method.getName());
-                }
-                finally {
-                    if(!isAccessibleDefault) {
+                } finally {
+                    if (!isAccessibleDefault) {
                         method.setAccessible(false);
                     }
                 }
@@ -48,7 +46,7 @@ public class Main {
         }
     }
 
-    public static Object [] getParametersForMethod (Method method) {
+    public static Object[] getParametersForMethod(Method method) {
         Object[] parametres = new Object[method.getParameterCount()];
         for (int i = 0; i < parametres.length; ++i) {
             if (method.getParameters()[i].getType().equals(int.class)) {
@@ -57,12 +55,12 @@ public class Main {
                 parametres[i] = ThreadLocalRandom.current().nextDouble();
             } else if (method.getParameters()[i].getType().equals(boolean.class)) {
                 parametres[i] = ThreadLocalRandom.current().nextBoolean();
-            } else if(method.getParameters()[i].getType().equals(char.class)) {
-                parametres[i] = (char)(ThreadLocalRandom.current().nextInt(0, 200));
+            } else if (method.getParameters()[i].getType().equals(char.class)) {
+                parametres[i] = (char) (ThreadLocalRandom.current().nextInt(0, 200));
             } else if (method.getParameters()[i].getType().equals(float.class)) {
                 parametres[i] = ThreadLocalRandom.current().nextFloat();
             } else if (method.getParameters()[i].getType().equals(byte.class)) {
-                parametres[i] = (byte)ThreadLocalRandom.current().nextInt(-128, 127);
+                parametres[i] = (byte) ThreadLocalRandom.current().nextInt(-128, 127);
             } else {
                 parametres[i] = "Random string!";
             }
