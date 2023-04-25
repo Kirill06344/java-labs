@@ -3,9 +3,7 @@ package tasks.translator;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import tasks.translator.exceptions.FileReadException;
 import tasks.translator.exceptions.InvalidFileFormatException;
@@ -14,8 +12,15 @@ public class Dictionary {
 
     private final Map<String, String> dictionary;
 
+
     public Dictionary(File file) throws FileReadException, InvalidFileFormatException {
-        dictionary = new HashMap<>();
+       this.dictionary = dictionaryReading(file);
+    }
+
+
+
+    private Map<String, String> dictionaryReading(File file) throws FileReadException {
+        Map<String, String> dictionary = new HashMap<>();
         try(FileReader reader = new FileReader(file)) {
             Scanner in = new Scanner(reader);
             while(in.hasNextLine()) {
@@ -26,12 +31,21 @@ public class Dictionary {
                 }
                 dictionary.put(words[0].trim(), words[1].trim());
             }
-        } catch (IOException e) {
+        } catch (IOException | InvalidFileFormatException e) {
             throw new FileReadException(e.getMessage());
         }
+        return dictionary;
     }
 
     public void printDictionary() {
         dictionary.forEach((key, value) -> System.out.println(key + " | " + value));
+    }
+
+    public Set<String> getAllKeys() {
+        return dictionary.keySet();
+    }
+
+    public Optional<String> getTranslate(String word) {
+        return Optional.ofNullable(dictionary.get(word));
     }
 }

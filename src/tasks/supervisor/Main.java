@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Main {
 
     private static ProgramState state = ProgramState.UNKNOWN;
-    static Thread  abstractThread = new Thread(new AbstractProgram());
+    static Thread abstractThread = new Thread(new AbstractProgram());
 
     final static Object object = new Object();
 
